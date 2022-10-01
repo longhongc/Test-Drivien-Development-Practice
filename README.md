@@ -16,3 +16,17 @@ the navigator, reviews each line of code.
 |-----|-----|-----|
 |*Driver*|Chang-Hong Chen|Pavan Mantripragada|
 |*Navigator*|Abhinav Garg|Po-Yu Huang|
+
+## Build
+```
+mkdir build && cd build
+cmake ..
+make -j
+```
+
+## Run
+Run test
+```
+cd build/test
+./cpp-test
+```
