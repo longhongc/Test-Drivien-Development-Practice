@@ -20,17 +20,30 @@ class PID {
        m_Kp{p}, m_Ki{i}, m_Kd{d}, m_Ts{ts}{}
 
    /**
-    * @Brief  Setter for m_Kp
+    * @Brief  Empty constructor
+    *         Starting with a default value of 
+    *         p: 0, i: o, d: 0, ts: 1
     */
-   void setPGain();
+   PID(){ PID(0, 0, 0, 1); }
+
+   /**
+    * @Brief  Setter for m_Kp
+    *
+    * @Param p P gain value
+    */
+   void setPGain(double p);
    /**
     * @Brief  Setter for m_Ki
+    *
+    * @Param i I gain value
     */
-   void setIGain();
+   void setIGain(double i);
    /**
     * @Brief  Setter for m_Kd
+    *
+    * @Param d D gain value
     */
-   void setDGain();
+   void setDGain(double d);
    /**
     * @Brief Setter for PID gains
     *
@@ -39,6 +52,14 @@ class PID {
     * @Param d Value for m_Kd
     */
    void setPID(double p, double i, double d);
+
+   /**
+    * @Brief  Setter for m_Ts
+    *
+    * @Param t The sampling time or step time for
+    *          each iteratoin.
+    */
+   void setStepTime(int t); 
 
    /**
     * @Brief  Getter for m_Kp
@@ -55,7 +76,7 @@ class PID {
    /**
     * @Brief  Getter for m_Kd
     *
-    * @Returns
+    * @Returns m_Kd
     */
    double getDGain();
    /**
@@ -64,6 +85,12 @@ class PID {
     * @Returns a vector that stores PID gains in sequence of P,I,D
     */
    std::vector<double> getPID();
+   /**
+    * @Brief  Getter for m_Ts
+    *
+    * @Returns m_Ts  
+    */
+   int getStepTime(); 
 
    /**
     * @Brief  Calculate the PID control
