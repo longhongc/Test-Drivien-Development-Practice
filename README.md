@@ -12,3 +12,7 @@ the navigator, reviews each line of code.
 ![image](https://user-images.githubusercontent.com/28807825/193426966-4ee6885a-eb3c-4deb-9f61-5e047493e4b0.png)
 
 # Roles of Pair-Programming
+||Pair A|Pair B|
+|-----|-----|-----|
+|*Driver*|Chang-Hong Chen|Pavan Mantripragada|
+|*Navigator*|Abhinav Garg|Po-Yu Huang|
