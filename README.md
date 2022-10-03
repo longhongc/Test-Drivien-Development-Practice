@@ -11,7 +11,16 @@ programmers to work together at one workstation. One, the driver, writes code wh
 the navigator, reviews each line of code. 
 ![image](https://user-images.githubusercontent.com/28807825/193426966-4ee6885a-eb3c-4deb-9f61-5e047493e4b0.png)
 
-# Roles of Pair-Programming
+## PID implementation
+The PID implementation follows the equation from Wikipedia.  
+Most of the coding notation also follows Wikipedia.   
+https://en.wikipedia.org/wiki/PID_controller  
+![image](https://user-images.githubusercontent.com/28807825/193662743-988255e1-6759-4ec5-970f-75169b941a22.png)
+
+### The class UML diagram
+![image](https://user-images.githubusercontent.com/28807825/193664860-3747f2e7-fddc-49e3-8be9-2b2fc8d4e747.png)
+
+## Roles of Pair-Programming
 ||Pair A|Pair B|
 |-----|-----|-----|
 |*Driver*|Chang-Hong Chen|Pavan Mantripragada|
