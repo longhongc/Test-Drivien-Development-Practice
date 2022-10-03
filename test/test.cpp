@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "pid.h"
+#include "pid.h"
 
 double Kp = 1;
 double Ki = 2;
@@ -66,3 +67,95 @@ TEST(PID_class_setters, set_step_time) {
   pid_test.setStepTime(new_Ts);
   EXPECT_EQ(pid_test.getStepTime(), new_Ts);
 }
+
+// Test PID calculation
+
+/**
+ * @Brief Test the p control value
+ *
+ */
+TEST(PID_calculation, calc_P) {
+  double new_Kp = 2;
+  double new_Ki = 0;
+  double new_Kd = 0;
+  pid_test.setPID(new_Kp, new_Ki, new_Kd);
+
+  double target = 2;
+  double input = 1;
+  auto p_control_value = new_Kp * (target - input);
+  EXPECT_EQ(pid_test.calcOutput(target, input), p_control_value);
+}
+
+/**
+ * @Brief  Test the I control value for several iterations
+ *
+ */
+TEST(PID_calculation, calc_I) {
+  double new_Kp = 0;
+  double new_Ki = 0.5;
+  double new_Kd = 0;
+  pid_test.setPID(new_Kp, new_Ki, new_Kd);
+  int new_Ts = 1;
+  pid_test.setStepTime(new_Ts);
+
+  double target = 9;
+  double input = 1;
+
+  // iteration 1
+  double error_1 = target - input;
+  auto u1 = new_Ki * (error_1 * new_Ts);
+  EXPECT_EQ(pid_test.calcOutput(target, input), u1);
+
+  // iteration 2
+  input += u1;
+  double error_2 = target - input;
+  auto u2 = new_Ki * (error_1 + error_2 * new_Ts);
+  EXPECT_EQ(pid_test.calcOutput(target, input), u2);
+
+  // check past errors
+  auto past_errors = pid_test.getPastErrors();
+  ASSERT_EQ(int(past_errors.size()), 2);
+  EXPECT_EQ(past_errors.at(0), error_1);
+  EXPECT_EQ(past_errors.at(1), error_2);
+
+  pid_test.clearPastErrors();
+  ASSERT_EQ(int(past_errors.size()), 0);
+}
+
+/**
+ * @Brief  Test the D control value for several iterations
+ *
+ */
+TEST(PID_calculation, calc_D) {
+  double new_Kp = 0.5;
+  double new_Ki = 0;
+  double new_Kd = 0.5;
+  pid_test.setPID(new_Kp, new_Ki, new_Kd);
+  int new_Ts = 1;
+  pid_test.setStepTime(new_Ts);
+
+  double target = 5;
+  double input = 1;
+
+  // iteration 1, including p control and d control
+  double error_1 = target - input;
+  auto u1 = new_Kp * error_1 + new_Ki * 0;
+  EXPECT_EQ(pid_test.calcOutput(target, input), u1);
+
+  // iteration 2
+  input += u1;
+  double error_2 = target - input;
+  auto u2 = new_Kp * error_2 + new_Ki * (error_2 - error_1);
+  EXPECT_EQ(pid_test.calcOutput(target, input), u2);
+
+  // check past errors
+  auto past_errors = pid_test.getPastErrors();
+  ASSERT_EQ(int(past_errors.size()), 2);
+  EXPECT_EQ(past_errors.at(0), error_1);
+  EXPECT_EQ(past_errors.at(1), error_2);
+
+  pid_test.clearPastErrors();
+  ASSERT_EQ(int(past_errors.size()), 0);
+}
+
+

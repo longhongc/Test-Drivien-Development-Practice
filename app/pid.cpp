@@ -1,45 +1,53 @@
 #include "pid.h"
 
-void PID::setPGain(double p) {  
-  return; 
+void PID::setPGain(double p) {
+  return;
 }
 
 void PID::setIGain(double i) {
-  return; 
+  return;
 }
 
 void PID::setDGain(double d) {
-  return; 
+  return;
 }
 
 void PID::setPID(double p, double i, double d) {
-  return; 
+  return;
 }
 
 void PID::setStepTime(int t) {
-  return; 
+  return;
 }
 
 double PID::getPGain() {
-  return 0.0; 
+  return 0.0;
 }
 
 double PID::getIGain() {
-  return 0.0; 
+  return 0.0;
 }
 
 double PID::getDGain() {
-  return 0.0; 
+  return 0.0;
 }
 
 std::vector<double> PID::getPID() {
-  return {}; 
+  return {};
 }
 
 int PID::getStepTime() {
-  return 0; 
+  return 0;
+}
+
+std::vector<double> PID::getPastErrors() {
+  return {};
+}
+
+void PID::clearPastErrors() {
+  return;
 }
 
 double PID::calcOutput(double target, double input) {
-  return 0.0; 
+  return 0.0;
 }

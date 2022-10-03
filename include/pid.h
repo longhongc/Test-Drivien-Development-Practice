@@ -93,7 +93,19 @@ class PID {
    int getStepTime(); 
 
    /**
-    * @Brief  Calculate the PID control
+    * @Brief  Getter for m_past_errors
+    *
+    * @Returns m_past_errors  
+    */
+   std::vector<double> getPastErrors();
+
+   /**
+    * @Brief  Reset errrors by clearing m_past_errors
+    */
+   void clearPastErrors(); 
+
+   /**
+    * @Brief  Calculate the PID control, and store the error into past_errors
     *
     * @Param target The setpoint that wanted to be achieved
     * @Param input The input signal
@@ -128,6 +140,9 @@ class PID {
     *         the product of this param with the change of error
     *         (The velocity of error).
     *         output += Kd * (current_error - prev_error)
+    *
+    *         If the data is the first data, than ouput += 0, because
+    *         there is no change of error.
     */
    double m_Kd;
 
@@ -141,7 +156,7 @@ class PID {
    /**
     * @Brief  The vector collects the error between input and target.
     */
-   std::vector<double> past_errors;
+   std::vector<double> m_past_errors;
 };
 
 #endif
