@@ -91,6 +91,7 @@ TEST(PID_calculation, calc_P) {
  *
  */
 TEST(PID_calculation, calc_I) {
+  pid_test.clearPastErrors();
   double new_Kp = 0;
   double new_Ki = 0.5;
   double new_Kd = 0;
@@ -127,6 +128,7 @@ TEST(PID_calculation, calc_I) {
  *
  */
 TEST(PID_calculation, calc_D) {
+  pid_test.clearPastErrors();
   double new_Kp = 0.5;
   double new_Ki = 0;
   double new_Kd = 0.5;
