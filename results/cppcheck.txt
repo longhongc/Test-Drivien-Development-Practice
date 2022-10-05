@@ -1,0 +1,16 @@
+Command used - 
+
+cppcheck --enable=all --language=c++ --std=c++11 -I include/ --suppress=missingIncludeSystem $( find . -name \*.h -or -name *.cpp | grep -vE -e "^./build/" -e "^./vendor/" )
+
+---------
+
+Checking app/main.cpp ...
+1/5 files checked 1% done
+Checking app/pid.cpp ...
+2/5 files checked 16% done
+Checking include/pid.h ...
+3/5 files checked 56% done
+Checking test/main.cpp ...
+4/5 files checked 58% done
+Checking test/test.cpp ...
+5/5 files checked 100% done
