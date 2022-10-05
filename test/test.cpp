@@ -142,13 +142,13 @@ TEST(PID_calculation, calc_D) {
 
   // iteration 1, including p control and d control
   double error_1 = target - input;
-  auto u1 = new_Kp * error_1 + new_Ki * 0;
+  auto u1 = new_Kp * error_1 + new_Kd * 0;
   EXPECT_EQ(pid_test.calcOutput(target, input), u1);
 
   // iteration 2
   input += u1;
   double error_2 = target - input;
-  auto u2 = new_Kp * error_2 + new_Ki * (error_2 - error_1);
+  auto u2 = new_Kp * error_2 + new_Kd * (error_2 - error_1);
   EXPECT_EQ(pid_test.calcOutput(target, input), u2);
 
   // check past errors
