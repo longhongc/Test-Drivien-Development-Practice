@@ -1,6 +1,10 @@
+/* Copyright 2022
+ * Author(s) Chang-Hong Chen, Abhinav Garg
+ * Modified by Pavan Mantripragada, Po-Yu Huang
+ */
 #include <gtest/gtest.h>
-#include "pid.h"
-#include "pid.h"
+
+#include "./pid.h"
 
 double Kp = 1;
 double Ki = 2;
@@ -8,22 +12,14 @@ double Kd = 3;
 double Ts = 4;
 PID pid_test(Kp, Ki, Kd, Ts);
 
-TEST(dummy, should_pass) {
-  EXPECT_EQ(1, 1);
-}
+TEST(dummy, should_pass) { EXPECT_EQ(1, 1); }
 
 // Test getters
-TEST(PID_class_getters, get_Kp) {
-  EXPECT_EQ(pid_test.getPGain(), Kp);
-}
+TEST(PID_class_getters, get_Kp) { EXPECT_EQ(pid_test.getPGain(), Kp); }
 
-TEST(PID_class_getters, get_Ki) {
-  EXPECT_EQ(pid_test.getIGain(), Ki);
-}
+TEST(PID_class_getters, get_Ki) { EXPECT_EQ(pid_test.getIGain(), Ki); }
 
-TEST(PID_class_getters, get_Kd) {
-  EXPECT_EQ(pid_test.getDGain(), Kd);
-}
+TEST(PID_class_getters, get_Kd) { EXPECT_EQ(pid_test.getDGain(), Kd); }
 
 TEST(PID_class_getters, get_pid) {
   auto pid_gains = pid_test.getPID();
@@ -115,13 +111,13 @@ TEST(PID_calculation, calc_I) {
 
   // check past errors
   auto past_errors = pid_test.getPastErrors();
-  ASSERT_EQ(int(past_errors.size()), 2);
+  ASSERT_EQ(static_cast<int>(past_errors.size()), 2);
   EXPECT_EQ(past_errors.at(0), error_1);
   EXPECT_EQ(past_errors.at(1), error_2);
 
   pid_test.clearPastErrors();
   past_errors = pid_test.getPastErrors();
-  ASSERT_EQ(int(past_errors.size()), 0);
+  ASSERT_EQ(static_cast<int>(past_errors.size()), 0);
 }
 
 /**
@@ -153,13 +149,11 @@ TEST(PID_calculation, calc_D) {
 
   // check past errors
   auto past_errors = pid_test.getPastErrors();
-  ASSERT_EQ(int(past_errors.size()), 2);
+  ASSERT_EQ(static_cast<int>(past_errors.size()), 2);
   EXPECT_EQ(past_errors.at(0), error_1);
   EXPECT_EQ(past_errors.at(1), error_2);
 
   pid_test.clearPastErrors();
   past_errors = pid_test.getPastErrors();
-  ASSERT_EQ(int(past_errors.size()), 0);
+  ASSERT_EQ(static_cast<int>(past_errors.size()), 0);
 }
-
-
