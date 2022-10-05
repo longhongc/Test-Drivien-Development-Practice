@@ -1,0 +1,14 @@
+Command used - 
+
+cpplint $( find . -name \*.h -or -name \*.cpp | grep -vE -e "^./build/" -e "^./vendor/" )
+
+---------
+
+Result -
+
+Done processing ./app/main.cpp
+Done processing ./app/pid.cpp
+Done processing ./include/pid.h
+Done processing ./test/main.cpp
+Done processing ./test/test.cpp
+
