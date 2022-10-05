@@ -63,13 +63,12 @@ double PID::calcOutput(double target, double input) {
   
   double rate_of_e = 0.0;
   if (!m_past_errors.empty()){
-    rate_of_e = (e_current - m_past_errors.back())/double(m_Ts);
+    rate_of_e = e_current - m_past_errors.back();
   }
 
   double area_of_e = std::accumulate(m_past_errors.begin(),m_past_errors.end(),0.0);
-  area_of_e *= m_Ts;
 
-  double new_velocity = m_Kp*e_current + m_Ki*area_of_e + m_Kd*rate_of_e;
+  double new_velocity = m_Kp*e_current + m_Ki*(area_of_e + e_current*m_Ts) + m_Kd*rate_of_e;
 
   m_past_errors.push_back(e_current);
   return new_velocity;
