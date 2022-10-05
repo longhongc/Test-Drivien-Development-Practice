@@ -120,6 +120,7 @@ TEST(PID_calculation, calc_I) {
   EXPECT_EQ(past_errors.at(1), error_2);
 
   pid_test.clearPastErrors();
+  past_errors = pid_test.getPastErrors();
   ASSERT_EQ(int(past_errors.size()), 0);
 }
 
@@ -157,6 +158,7 @@ TEST(PID_calculation, calc_D) {
   EXPECT_EQ(past_errors.at(1), error_2);
 
   pid_test.clearPastErrors();
+  past_errors = pid_test.getPastErrors();
   ASSERT_EQ(int(past_errors.size()), 0);
 }
 
